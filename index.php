@@ -1,7 +1,7 @@
 <?php 
 include 'includes/header.php';
-include 'database.php';
-include 'functions.php';
+include 'includes/database.php';
+include 'includes/functions.php';
 
 session_start();
 $_SESSION;
@@ -36,10 +36,11 @@ if ($result):
                 <img src="<?php echo $product['image']; ?>" class="img-responsive">
                 <h4 class="text-info"><?php echo $product['name']; ?></h4>
                 <h4> <?php echo $product['price']; ?>Dhs</h4>
-                <input type="text" name="quantity" class="form-control" value="1">
+                <input type="number" name="quantity" class="form-control" value="1">
                 <input type="hidden" name="name" value="<?php echo $product['name'];?>">
                 <input type="hidden" name="price"  value="<?php echo $product['price'];?>">
                 <input type="submit" name="add_to_cart" style="margin-top:5px ;" class="btn btn-info" value="Add to Cart">
+                <a type="button" href="details.php" name="details" style="margin-top:5px ;" class="btn btn-info" value="details">Details</a>
                 </div>
             
             </form>
@@ -50,3 +51,5 @@ if ($result):
 endif; 
 ?>
 </div>
+<?php 
+include 'includes/footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php 
 include 'includes/header.php';
-include 'database.php';
-include 'functions.php';
+include 'includes/database.php';
+include 'includes/functions.php';
 
 session_start();
 $_SESSION;
@@ -68,13 +68,7 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
     $_SESSION['shopping_cart']= array_values($_SESSION['shopping_cart']);
 }
 
-//pre_r($_SESSION);
 
-function pre_r($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-}
 ?>
 
 <!DOCTYPE html>

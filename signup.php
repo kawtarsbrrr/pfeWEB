@@ -1,8 +1,8 @@
 <?php
 session_start();
 include "includes/header.php";
-include "database.php";
-include "functions.php";
+include "includes/database.php";
+include "includes/functions.php";
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
