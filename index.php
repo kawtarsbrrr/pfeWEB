@@ -1,6 +1,12 @@
 <?php 
 include 'includes/header.php';
-include 'includes/navbar.php';
+include 'database.php';
+include 'functions.php';
+
+session_start();
+$_SESSION;
+
+//$data_user= check_login($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +22,8 @@ include 'includes/navbar.php';
 <body>
 <div class="container">
 <?php
-$connect = mysqli_connect('localhost', 'root','','pfe');
 $query = 'SELECT * FROM products';
-$result = mysqli_query($connect,$query);
+$result = mysqli_query($con,$query);
 
 if ($result):
     if(mysqli_num_rows($result)>0):

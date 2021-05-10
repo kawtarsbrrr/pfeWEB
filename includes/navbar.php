@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-  <a class="navbar-brand" href="#">
-            <img src="logov2 transparentNoName.ico" >
+  <a class="navbar-brand" href="index.php" >
+            <img src="untitled.png" class="img-responsive" style="height: 40px; margin-right: 0px; padding: 0px;" >
 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,16 +14,20 @@
         <li class="nav-item">
           <a class="nav-link" href="cart.php">Cart</a>
         </li>
+
+
+        
+
         <li class="nav-item dropdown" style="float: right; margin-left: 310mm;">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
             Account
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item"  href="cart.php">Sign up</a></li>
-            <li><a class="dropdown-item" href="signin.php">Sign in</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout.php">Log out</a></li>
-          </ul>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item"  href="signup.php">Sign up</a>
+            <a class="dropdown-item" href="login.php">Login</a>
+        
+            <a class="dropdown-item" href="logout.php">Log out</a>
+          </div>
         </li>
 
         

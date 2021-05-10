@@ -12,22 +12,37 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
   if(!empty($username) && !empty($password) && !is_numeric($username))
   {
-    //save to database
+    //read from database
     //a function to generate a random user_id 
     $user_id= random_num(20);
-    $query= "insert into users (user_id,username, password) values ('$user_id','$username', '$password')";
+    $query= "select * from users where username= '$username' limit 1" ;
+    $result = mysqli_query($con, $query);
     
-    mysqli_query($con,$query);
+    if($result)
+    {
+      if($result && mysqli_num_rows($result)>0){
+        $user_data= mysqli_fetch_assoc($result);
+        
+        if($user_data['password']=== $password) 
+        {
+          $_SESSION['user_id'] = $user_data['user_id'];
+          header("Location: index.php");
+          die;
+        }
+    }
+    }
+    echo "Wrong username or password!";
     
-    header("Location: login.php");
-    die;
-
   }
+  
   else
   { 
-    echo " Please enter valid informations!";
+    echo " Please enter valid informations!"; 
+    
   }
 }
+
+
 ?>
 
 
@@ -53,9 +68,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
       <input type="password" class="form-control" name="password">
     </div>
   </div>
-
+  <div   class="row mb-3">
+  You don't have an account? <a href="signup.php"> Sign up</a>
+  </div>
   
-  <button type="submit" class="btn btn-primary" value="login">Sign up</button>
+  <button type="submit" class="btn btn-primary" value="login">Sign in</button>
 </form>
 </body>
 </html>
