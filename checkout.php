@@ -1,72 +1,123 @@
-<?php
-  // connect to database
-  include 'includes/database.php';
+<?php 
+include 'includes/header.php';
+include 'includes/database.php';
+include 'includes/functions.php';
 
-  // include objects
-  include_once "cart.php";
-  include_once "includes/database.php";
-  
+session_start();
 
+
+$data_user= check_login($con);
+
+?>
+
+
+
+	
+<form action=""method="post">
+<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="billing-details">
+						
+						<h3> <b>Billing Details</b> </h3>
+							<div class="row">
+								<div class="col-md-6">
+									<label>First Name </label>
+									<input class="form-control" name="first"placeholder="" value="" type="text"required>
+								</div>
+								<div class="col-md-6">
+									<label>Last Name </label>
+									<input class="form-control" name="last"placeholder="" value="" type="text"required>
+								</div>
+							</div>
+							<label>Address </label>
+							<input class="form-control" name="address1"placeholder="" value="" type="text"required>
+							<div></div>
+							<input class="form-control" name="address2"placeholder="" value="" type="text"required>
+							<div ></div>
+							<div class="row">
+								<div class="col-md-4">
+									<label>Country </label>
+									<input class="form-control" name="city"placeholder="" value="" type="text"required>
+								</div>
+								<div class="col-md-4">
+									<label>City</label>
+									<input class="form-control" value="" name="" placeholder=" " type="text"required>
+								</div>
+								<div class="col-md-4">
+									<label>Postcode </label>
+									<input class="form-control" placeholder="" value="" type="text"required>
+								</div>
+							</div>
+							<div></div>
+							<label>Phone </label>
+							<input class="form-control" id="phone" placeholder="" value="" type="text" required>
+						
+					</div>
+				</div>
+				
+			
+			</div>
+			
+			<br>
+            <br>
+			<h4> <b>Your order</b> </h4>
+			 <table class="table table-bordered extra-padding table-success">
+            <?php
+        if(!empty($_SESSION['shopping_cart'])):
+            $total=0;
+            foreach ($_SESSION['shopping_cart'] as $key => $product):
+                ?>
+                <?php
+                $total= $total + ($product['quantity']* $product['price']);
+            endforeach;
+        endif;
+        ?>
  
+        <tr>
+        <th>Order Total</th>
+            <td ><?php echo number_format($total,2); ?></td>
+        </tr>
+        <tr>
+						<th>Shipping and Handling</th>
+						<td>
+							Free Shipping				
+						</td>
+					</tr>
+			</table>
 
-  // initialize objects
+			<br>
+            <br>
+			<h4 > <b> Payment Method</b></h4>
+			<div>
+				<div class="row">
+					
+						<div class="col-md-4">
+							<input name="payment" id="radio1" class="css-checkbox" name=""type="radio"value="cod"><span> Cash on Delivery</span>
+						</div>
+						<div class="col-md-4">
+							<input name="payment" value="cheque"id="radio2" class="css-checkbox" name=""type="radio"><span>Cheque Payment</span>
+						</div>
+					
+				</div>
+			<br>
+            <br>
+				
+					<input  class="css-checkbox" value="true" type="checkbox""><span>I've read and accept the <a href="">terms & conditions</a></span>
+			<br>
+            <br>
+				<div style="text-align: center;">
+                
+                <button class="button btn-lg ">
+                    <a href="payment.php">
+                        Pay Now
+                    </a>
+                </button>
+                </div>
+				
+			</div>
+		</div>		
+</form>		
+		</div>
 
-
-  // set page title
-  $page_title="Checkout";
-
-  
-
-  // $cart_count variable is initialized in navigation.php
-  if($cart_count>0){
-
-      $cart_item->user_id=1;
-      $stmt=$cart_item->read();
-
-      $total=0;
-      $item_count=0;
-
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-          extract($row);
-
-          $total= $total + ($product['quantity']* $product['price']);
-
-          echo "<div class='cart-row'>";
-              echo "<div class='col-md-8'>";
-
-                  echo "<div class='product-name m-b-10px'><h4>{$name}</h4></div>";
-                  echo $product['quantity']>1 ? "<div>{$product['quantity']} items</div>" : "<div>{$product['quantity']} item</div>";
-
-              echo "</div>";
-
-              echo "<div class='col-md-4'>";
-                  echo "<h4>&#36;" . number_format($product['price'], 2, '.', ',') . "</h4>";
-              echo "</div>";
-          echo "</div>";
-
-          $item_count += $quantity;
-          $ttotal+=$total;
-      }
-
-      echo "<div class='col-md-12 text-align-center'>";
-          echo "<div class='cart-row'>";
-              if($item_count>1){
-                  echo "<h4 class='m-b-10px'>Total ({$item_count} items)</h4>";
-              }else{
-                  echo "<h4 class='m-b-10px'>Total ({$item_count} item)</h4>";
-              }
-              echo "<h4>&#36;" . number_format($ttotal, 2, '.', ',') . "</h4>";
-
-              echo "<a href='place_order.php' class='btn btn-lg btn-success m-b-10px'>";
-                  echo "<span class='glyphicon glyphicon-shopping-cart'></span> Place Order";
-              echo "</a>";
-          echo "</div>";
-      echo "</div>";
-
-  }else{
-    echo "<div class='col-md-12'>";
-        echo "<div class='alert alert-danger'>";
-            echo "No products found in your cart!";
-        echo "</div>";
-    echo "</div>";
-  }
+<?php include 'includes/footer.php';
