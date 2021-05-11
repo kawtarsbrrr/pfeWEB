@@ -1,20 +1,19 @@
-<footer class="bg-light text-center text-lg-start">
-  <div class="container p-4">
-  
-    <div class="row">
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <h5 class="text-uppercase">About us</h5>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-          molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-          voluptatem veniam, est atque cumque eum delectus sint!
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright
-    <p class="text-dark">Klvltd@gmail.com</p>
-  </div>
+<footer id="footer" >
+        © 2020 Copyright 
+  <style>
+
+#footer {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  bottom: 0;
+width: 100%;
+  margin-right: 20%;
+  height: 2.5rem;    
+  opacity:0.6;
+  color: black;
+}
+
+  </style>
 </footer>

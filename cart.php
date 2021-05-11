@@ -64,8 +64,14 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
         unset($_SESSION['shopping_cart'][$key]);
     }
 }
+
+
 //reset session array so they match with $product_ids numeric array
     $_SESSION['shopping_cart']= array_values($_SESSION['shopping_cart']);
+}
+if( filter_input(INPUT_GET, 'action')== 'clearall'){
+   
+    unset($_SESSION['shopping_cart']);
 }
 
 
@@ -78,16 +84,16 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" >
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
-<div class="container">
+<div id="page-container " class="container">
  
 <div style="clear: both;"></div>
 <br />
-<div class="table-responsive">
-    <table>
+<div >
+    <table class="table table-bordered table-striped">
         <tr><th colspan="5"><h3>Order Details</h3></th></tr>
         <tr>
         
@@ -110,7 +116,7 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
             <td><?php echo number_format($product['quantity']* $product['price'], 2); ?></td>
         <td>
             <a href="cart.php?action=delete&id=<?php echo $product['id'];?>">
-                <div class="btn-danger">Remove</div>
+                <button class="btn btn-danger btn-block" >Remove</button>
             </a>
         </td>
         </tr>
@@ -123,7 +129,11 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
 
             <td colspan="3" align="right"> Total</td>
             <td align="right"><?php echo number_format($total,2); ?></td>
-            <td></td>
+            <td>
+                <a href="cart.php?action=clearall">
+                    <button class="btn btn-warning btn-block">Clear All</button>
+                </a>
+            </td>
             
         </tr>
 
@@ -148,3 +158,5 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
 
 </body>
 </html>
+<?php 
+include 'includes/footer.php'; ?> 

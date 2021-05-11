@@ -55,7 +55,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
   <title>Document</title>
 </head>
 <body>
-<form method="POST" style=" margin-right: 30%; margin-left: 20%; ">
+<form id="page-container" method="POST" style=" margin-right: 30%; margin-left: 20%; ">
   <div class="row mb-3">
     <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
@@ -74,5 +74,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
   
   <button type="submit" class="btn btn-primary" value="login">Sign in</button>
 </form>
+<div id="content-wrap ">
+
+</div>
 </body>
+
+
+
 </html>
+<?php 
+include 'includes/footer.php'; ?>

@@ -30,7 +30,7 @@ if ($result):
         while($product= mysqli_fetch_assoc($result)):
             //print_r($product);
             ?>
-            <div class="col-sm-4 col-md-3">
+            <div  class="col-sm-4 col-md-3">
             <form action="cart.php?action=add&id=<?php echo $product['id'];?>" method="post">
                 <div class="products">
                 <img src="<?php echo $product['image']; ?>" class="img-responsive">
@@ -40,7 +40,6 @@ if ($result):
                 <input type="hidden" name="name" value="<?php echo $product['name'];?>">
                 <input type="hidden" name="price"  value="<?php echo $product['price'];?>">
                 <input type="submit" name="add_to_cart" style="margin-top:5px ;" class="btn btn-info" value="Add to Cart">
-                <a type="button" href="details.php" name="details" style="margin-top:5px ;" class="btn btn-info" value="details">Details</a>
                 </div>
             
             </form>
@@ -50,6 +49,10 @@ if ($result):
     endif;
 endif; 
 ?>
+
 </div>
-<?php 
-include 'includes/footer.php'; ?>
+   <?php 
+include 'includes/footer.php'; ?> 
+
+
+
