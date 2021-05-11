@@ -31,13 +31,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         }
     }
     }
+    echo "<div class='col-md-12'>";
+    echo "<div class='alert alert-danger'>";
     echo "Wrong username or password!";
+    echo "</div>";
+    echo "</div>";
     
   }
   
   else
   { 
+    echo "<div class='col-md-12'>";
+    echo "<div class='alert alert-danger'>";
     echo " Please enter valid informations!"; 
+    echo "</div>";
+    echo "</div>";
     
   }
 }
