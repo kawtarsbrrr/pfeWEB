@@ -1,3 +1,8 @@
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
   <a class="navbar-brand" href="index.php" >
@@ -23,10 +28,16 @@
             Account
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item"  href="signup.php">Sign up</a>
-            <a class="dropdown-item" href="login.php">Login</a>
-        
-            <a class="dropdown-item" href="logout.php">Log out</a>
+            
+            <?php 
+            
+        if(isset($_SESSION['user_id']))
+        { ?> 
+        <a class="dropdown-item" href="logout.php">Logout</a>
+        <?php } else{?> 
+          <a class="dropdown-item"  href="signup.php">Sign up</a>
+            <a class="dropdown-item" href="login.php">Log in</a>
+            <?php }?>
           </div>
         </li>
 

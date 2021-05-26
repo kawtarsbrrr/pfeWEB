@@ -3,15 +3,15 @@ include 'includes/header.php';
 include 'includes/database.php';
 include 'includes/functions.php';
 
-session_start();
-$_SESSION;
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    $_SESSION;
+}
 $data_user= check_login($con);
 
 
 $product_ids = array();
 
-//session_destroy();
 
 //check if Add to Cart has been submitted 
 if(filter_input(INPUT_POST, 'add_to_cart')){
@@ -31,6 +31,7 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
                 'price' =>filter_input(INPUT_POST, 'price'),
                 'quantity' =>filter_input(INPUT_POST, 'quantity'),
             ); 
+            
         }
         else {//product already exists=add quantity
             //match array key to id of the product being added to the cart
@@ -52,9 +53,12 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
             'price' =>filter_input(INPUT_POST, 'price'),
             'quantity' =>filter_input(INPUT_POST, 'quantity'),
         );
-
+       
     }
+    
 }
+   
+
 
 if( filter_input(INPUT_GET, 'action')== 'delete'){
     //loop through all products in the shopping cart array til it matchesq with GET id variable
@@ -62,6 +66,7 @@ if( filter_input(INPUT_GET, 'action')== 'delete'){
         if($product['id'] == filter_input(INPUT_GET, 'id')){
         //remove product from the shopping cart when it matches
         unset($_SESSION['shopping_cart'][$key]);
+
     }
 }
 
@@ -73,6 +78,7 @@ if( filter_input(INPUT_GET, 'action')== 'clearall'){
    
     unset($_SESSION['shopping_cart']);
 }
+
 
 
 ?>
@@ -158,5 +164,6 @@ if( filter_input(INPUT_GET, 'action')== 'clearall'){
 
 </body>
 </html>
+
 <?php 
 include 'includes/footer.php'; ?> 

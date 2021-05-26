@@ -3,7 +3,10 @@ include 'includes/header.php';
 include 'includes/database.php';
 include 'includes/functions.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    $_SESSION;
+}
 
 
 $data_user= check_login($con);
@@ -104,7 +107,7 @@ $data_user= check_login($con);
 							<input name="payment" id="radio1" class="css-checkbox" name=""type="radio"value="cod"><span> Cash on Delivery</span>
 						</div>
 						<div class="col-md-4">
-							<input name="payment" value="cheque"id="radio2" class="css-checkbox" name=""type="radio"><span>Cheque Payment</span>
+							<input name="payment" value="cheque"id="radio2" class="css-checkbox" name=""type="radio"><span> Credit Card</span>
 						</div>
 					
 				</div>

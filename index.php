@@ -3,10 +3,16 @@ include 'includes/header.php';
 include 'includes/database.php';
 include 'includes/functions.php';
 
-session_start();
-$_SESSION;
 
-//$data_user= check_login($con);
+
+
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    $_SESSION;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +39,7 @@ if ($result):
             <div  class="col-sm-4 col-md-3">
             <form action="cart.php?action=add&id=<?php echo $product['id'];?>" method="post">
                 <div class="products">
-                <img src="<?php echo $product['image']; ?>" class="img-responsive">
+                <img src="includes/img/<?php echo $product['image']; ?>" class="img-responsive">
                 <h4 class="text-info"><?php echo $product['name']; ?></h4>
                 <h4> <?php echo $product['price']; ?>Dhs</h4>
                 <input type="number" name="quantity" class="form-control" value="1">
@@ -49,7 +55,8 @@ if ($result):
     endif;
 endif; 
 ?>
-
+<?php 
+?>
 </div>
    <?php 
 include 'includes/footer.php'; ?> 
